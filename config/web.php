@@ -62,16 +62,20 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => ['api/user'],
+                    'controller' => ['v1/user'],
                     // 'only' => ['view'],
                     'pluralize' => false
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['api/auth'],
+                    'controller' => ['v1/auth'],
                     'extraPatterns' => [
                         'POST login' => 'login',
                     ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/post']
                 ]
             ],
         ],
@@ -79,7 +83,7 @@ $config = [
     ],
 
     'modules' => [
-        'api' => [
+        'v1' => [
             'class' => 'app\modules\api\Module',
         ],
     ],

@@ -34,7 +34,7 @@ class AuthController extends Controller
         if ($token = $model->auth()) {
             return $token;
         } else {
-            return $model;
+            return $model->getErrors();
         }
     }
 

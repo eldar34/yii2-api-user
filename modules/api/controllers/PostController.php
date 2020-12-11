@@ -8,11 +8,11 @@ use yii\filters\auth\HttpBearerAuth;
 use yii\web\Response;
 
 /**
- * User controller for the `api` module
+ * Post controller for the `api` module
  */
-class UserController extends ActiveController
+class PostController extends ActiveController
 {
-    public $modelClass = 'app\models\User';
+    public $modelClass = 'app\models\Post';
 
     public function behaviors()
     {
