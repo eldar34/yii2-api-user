@@ -63,7 +63,6 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => ['v1/user'],
-                    // 'only' => ['view'],
                     'pluralize' => false
                 ],
                 [

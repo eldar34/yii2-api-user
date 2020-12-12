@@ -19,7 +19,7 @@ class PostController extends ActiveController
         $behaviors = parent::behaviors();
 
         $behaviors['authenticator']['class'] = HttpBearerAuth::className();
-        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_HTML;
+        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
 
         return $behaviors;
     }

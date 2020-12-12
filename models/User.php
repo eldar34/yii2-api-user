@@ -65,6 +65,25 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function fields()
+    {
+
+        $fields = parent::fields();
+
+        // Hide unsafe fields
+        unset(
+            $fields['auth_key'], 
+            $fields['status'],
+            $fields['password_hash'],
+            $fields['verification_token'],
+            $fields['password_reset_token'],
+            $fields['created_at'],
+            $fields['updated_at']
+        );
+
+        return $fields;
+    }
+
     /**
      * @inheritdoc
      */
@@ -150,6 +169,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
+        // default length=32
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
@@ -162,7 +182,7 @@ class User extends ActiveRecord implements IdentityInterface
             'username' => 'Username',
             'auth_key' => 'Auth Key',
             'verification_token' => 'Verification Token',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Password',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Status',
