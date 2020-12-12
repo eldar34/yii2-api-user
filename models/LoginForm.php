@@ -73,6 +73,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             $user = $this->getUser();
             $user->verification_token = Yii::$app->security->generateRandomString();
+            $user->validate();
             
             return $user->update() ? $user->verification_token : null;
         } else {

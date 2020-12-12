@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property string $auth_key
  * @property string|null $verification_token
  * @property string $password_hash
+ * @property string $password
  * @property string|null $password_reset_token
  * @property string $email
  * @property int $status
@@ -24,9 +25,49 @@ use yii\db\ActiveRecord;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $password;
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
+    const SCENARIO_USER_SIGNUP = 'user_signup';
+    const SCENARIO_USER_UPDATE = 'user_update';
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+
+            if($insert){
+                
+                $this->generateAccessToken();
+                $this->generateAuthKey();
+            }
+
+            $this->username = mb_strtolower($this->username);
+
+            if(!is_null($this->password)){
+                $this->setPassword($this->password);
+            }
+
+            
+            
+
+            return parent::beforeSave($insert);
+        } else {
+            return false;
+        }
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+
+        $scenarios[self::SCENARIO_USER_UPDATE] = ['username', 'email', 'password'];
+        $scenarios[self::SCENARIO_USER_SIGNUP] = ['username', 'email', 'password'];
+
+        return $scenarios;
+        
+    }
 
     /**
      * @inheritdoc
@@ -52,11 +93,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
+            [['username', 'password', 'email'], 'required', 'on' => 'user_signup'],
+            ['username', 'match', 'pattern' => '/^[A-z0-9_-]*$/i'],
+            ['username', 'string', 'min' => 2, 'max' => 64],
+            ['password', 'string', 'min' => 6, 'max' => 120],
+            ['email', 'email'],
+            [['auth_key', 'password_hash'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username', 'verification_token', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['verification_token', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['verification_token'], 'unique'],
