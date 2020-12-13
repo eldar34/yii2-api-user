@@ -6,4 +6,24 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./:/app:delegated
     ports:
-      - '8000:80'
+      - '9010:80'
+    depends_on:
+      - db
+  
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./dockDB:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: verylongpassword
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      
+
+  adminer:
+      image: adminer
+      restart: always
+      ports: 
+        - 9020:8080
