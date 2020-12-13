@@ -14,6 +14,10 @@ use yii\filters\VerbFilter;
  * User controller for the `api` module
  */
 
+ /**
+ * @OA\Info(title="Yii2-user-api", version="0.1")
+ */
+
 
 class UserController extends ActiveController
 {

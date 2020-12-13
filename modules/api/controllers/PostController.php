@@ -10,8 +10,33 @@ use yii\web\Response;
 /**
  * Post controller for the `api` module
  */
+/**
+* @OA\Schemes(format="http")
+* @OA\SecurityScheme(
+ *      securityScheme="bearerAuth",
+ *      in="header",
+ *      name="Authorization",
+ *      type="http",
+ *      scheme="bearer",
+ *      bearerFormat="JWT",
+* )
+*/
 class PostController extends ActiveController
 {
+
+/**
+ * 
+ * @OA\Get(
+ *      path="/web/v1/posts",
+ *      tags={"Post"},
+ *      description="Get list of posts",
+ *      security={{"bearerAuth":{}}}, 
+ * 
+ *       @OA\Response(response="200", description="Posts list"),        
+ *       @OA\Response(response=401, description="Unauthorized"),
+ *       @OA\Response(response=404, description="Not Found"),
+ * )
+ */
     public $modelClass = 'app\models\Post';
 
     public function behaviors()

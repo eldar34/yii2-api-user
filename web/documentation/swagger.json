@@ -42,6 +42,30 @@
                 }
             }
         },
+        "/web/v1/posts": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "description": "Get list of posts",
+                "responses": {
+                    "200": {
+                        "description": "Posts list"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/web/v1/user": {
             "get": {
                 "tags": [
@@ -220,6 +244,17 @@
                         "api_key": []
                     }
                 ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }
