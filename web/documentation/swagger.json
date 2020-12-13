@@ -66,6 +66,135 @@
                 ]
             }
         },
+        "/web/v1/posts/{id}": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get post by ID",
+                "description": "Returns a single post",
+                "operationId": "view",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Posts list"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Update post by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Delete post by ID",
+                "description": "Delete post",
+                "operationId": "view",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/web/v1/user": {
             "get": {
                 "tags": [
@@ -126,7 +255,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Find user by ID",
+                "summary": "Get user by ID",
                 "description": "Returns a single user",
                 "operationId": "view",
                 "parameters": [
@@ -151,17 +280,13 @@
                     "404": {
                         "description": "User not found"
                     }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
+                }
             },
             "put": {
                 "tags": [
                     "User"
                 ],
+                "summary": "Update user by ID",
                 "operationId": "app\\modules\\api\\controllers\\UserController::actionUpdate",
                 "parameters": [
                     {
@@ -216,14 +341,14 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Find user by ID",
-                "description": "Returns a single user",
+                "summary": "Delete user by ID",
+                "description": "Delete user",
                 "operationId": "view",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of user to return",
+                        "description": "ID of user to delete",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -233,17 +358,12 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Successful operation"
+                        "description": "NoContent"
                     },
                     "404": {
                         "description": "User not found"
                     }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
+                }
             }
         }
     },
@@ -257,5 +377,19 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Get Auth Token"
+        },
+        {
+            "name": "User",
+            "description": "Users endpoints"
+        },
+        {
+            "name": "Post",
+            "description": "Posts endpoints"
+        }
+    ]
 }

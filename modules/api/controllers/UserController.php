@@ -16,6 +16,29 @@ use yii\filters\VerbFilter;
 
  /**
  * @OA\Info(title="Yii2-user-api", version="0.1")
+ * 
+ *  @OA\Schemes(format="http")
+ * @OA\SecurityScheme(
+ *      securityScheme="bearerAuth",
+ *      in="header",
+ *      name="Authorization",
+ *      type="http",
+ *      scheme="bearer",
+ *      bearerFormat="JWT",
+ * )
+ * 
+ *  @OA\Tag(
+ *     name="Auth",
+ *     description="Get Auth Token",
+ * )
+ * @OA\Tag(
+ *     name="User",
+ *     description="Users endpoints",
+ * )
+ *  @OA\Tag(
+ *     name="Post",
+ *     description="Posts endpoints",
+ * )
  */
 
 
@@ -95,7 +118,7 @@ class UserController extends ActiveController
 /**
 * @OA\Get(
 *     path="/web/v1/user/{id}",
-*     summary="Find user by ID",
+*     summary="Get user by ID",
 *     description="Returns a single user",
 *     operationId="view",
 *     tags={"User"},
@@ -120,10 +143,7 @@ class UserController extends ActiveController
 *     @OA\Response(
 *         response="404",
 *         description="User not found"
-*     ),
-*     security={
-*       {"api_key": {}}
-*     }
+*     )
 * )
 */
 
@@ -155,6 +175,7 @@ class UserController extends ActiveController
  *          )
  *      ),
  * 
+ * summary="Update user by ID",
  * @OA\Parameter(
  *   description="ID of user to update",
  *   in="path",
@@ -188,12 +209,12 @@ class UserController extends ActiveController
 /**
 * @OA\DELETE(
 *     path="/web/v1/user/{id}",
-*     summary="Find user by ID",
-*     description="Returns a single user",
+*     summary="Delete user by ID",
+*     description="Delete user",
 *     operationId="view",
 *     tags={"User"},
 *     @OA\Parameter(
-*         description="ID of user to return",
+*         description="ID of user to delete",
 *         in="path",
 *         name="id",
 *         required=true,
@@ -204,15 +225,12 @@ class UserController extends ActiveController
 *     ),
 *     @OA\Response(
 *         response=204,
-*         description="Successful operation"
+*         description="NoContent"
 *     ),
 *     @OA\Response(
 *         response="404",
 *         description="User not found"
-*     ),
-*     security={
-*       {"api_key": {}}
-*     }
+*     )
 * )
 */
 
