@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
 /**
  * User controller for the `api` module
  */
+
+
 class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
@@ -36,12 +38,38 @@ class UserController extends ActiveController
         return $actions;
     }
 
+/**
+ * @OA\Get(path="/web/v1/user", tags={"User"},
+ * @OA\Response(response="200", description="List user"),        
+ * @OA\Response(response="405", description="Method Not Allowed"),        
+ * @OA\Response(response="404", description="Not Found")        
+ * )
+ * 
+ */
+
     public function actionIndex()
     {        
         return new ActiveDataProvider([
             'query' => User::find(),
         ]);
     }
+
+/**
+ * @OA\POST(path="/web/v1/user", tags={"User"},
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *              mediaType="application/json",
+ *              @OA\Schema(
+ *                  required={"username", "email", "password"},
+ *                  @OA\Property(property="username", type="string"),
+ *                  @OA\Property(property="email", type="string"),
+ *                  @OA\Property(property="password", type="string"),
+ *              )
+ *          )
+ *      ),
+ * @OA\Response(response=201, description="Successful operation")
+ * )
+  */
 
     public function actionCreate()
     {        
@@ -60,6 +88,41 @@ class UserController extends ActiveController
             
     }
 
+/**
+* @OA\Get(
+*     path="/web/v1/user/{id}",
+*     summary="Find user by ID",
+*     description="Returns a single user",
+*     operationId="view",
+*     tags={"User"},
+*     @OA\Parameter(
+*         description="ID of user to return",
+*         in="path",
+*         name="id",
+*         required=true,
+*         @OA\Schema(
+*           type="integer",
+*           format="int64"
+*         )
+*     ),
+*     @OA\Response(
+*         response=200,
+*         description="Successful operation"
+*     ),
+*     @OA\Response(
+*         response="400",
+*         description="Invalid ID supplied"
+*     ),
+*     @OA\Response(
+*         response="404",
+*         description="User not found"
+*     ),
+*     security={
+*       {"api_key": {}}
+*     }
+* )
+*/
+
     public function actionView($id)
     {
         
@@ -73,6 +136,36 @@ class UserController extends ActiveController
         
         
     }
+
+/**
+ * @OA\PUT(path="/web/v1/user/{id}", tags={"User"},
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *              mediaType="application/json",
+ *              @OA\Schema(
+ *                  required={"username", "email", "password"},
+ *                  @OA\Property(property="username", type="string"),
+ *                  @OA\Property(property="email", type="string"),
+ *                  @OA\Property(property="password", type="string"),
+ *              )
+ *          )
+ *      ),
+ * 
+ * @OA\Parameter(
+ *   description="ID of user to update",
+ *   in="path",
+ *   name="id",
+ *   required=true,
+ *   @OA\Schema(
+ *     type="integer",
+ *     format="int64"
+ *   )
+ * ),
+ * @OA\Response(response=200, description="Successful operation"),
+ * @OA\Response(response=422, description="Unprocessable Entity"),
+ * @OA\Response(response="404",description="User not found")
+ * )
+  */
 
     public function actionUpdate($id)
     { 
@@ -88,6 +181,36 @@ class UserController extends ActiveController
             return $user->getErrors();
         }
     }
+/**
+* @OA\DELETE(
+*     path="/web/v1/user/{id}",
+*     summary="Find user by ID",
+*     description="Returns a single user",
+*     operationId="view",
+*     tags={"User"},
+*     @OA\Parameter(
+*         description="ID of user to return",
+*         in="path",
+*         name="id",
+*         required=true,
+*         @OA\Schema(
+*           type="integer",
+*           format="int64"
+*         )
+*     ),
+*     @OA\Response(
+*         response=204,
+*         description="Successful operation"
+*     ),
+*     @OA\Response(
+*         response="404",
+*         description="User not found"
+*     ),
+*     security={
+*       {"api_key": {}}
+*     }
+* )
+*/
 
     public function actionDelete($id)
     {       
