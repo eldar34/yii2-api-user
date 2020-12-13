@@ -59,11 +59,12 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => true,
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => ['v1/user'],
-                    'pluralize' => false
+                    'pluralize' => false,	
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -71,6 +72,7 @@ $config = [
                     'extraPatterns' => [
                         'POST login' => 'login',
                     ],
+                    'pluralize' => false,	
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

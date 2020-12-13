@@ -3,16 +3,17 @@
 namespace app\modules\api\controllers;
 
 use Yii;
-use yii\rest\Controller;
+use yii\rest\ActiveController;
 use yii\web\Response;
 use yii\data\ActiveDataProvider;
 use app\models\User;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
  * User controller for the `api` module
  */
-class UserController extends Controller
+class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
 
@@ -23,6 +24,16 @@ class UserController extends Controller
         $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
 
         return $behaviors;
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+
+        // отключить действия "delete" и "create"
+        unset($actions['create'], $actions['index'], $actions['view'], $actions['update'], $actions['delete']);
+
+        return $actions;
     }
 
     public function actionIndex()

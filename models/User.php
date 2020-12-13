@@ -43,14 +43,9 @@ class User extends ActiveRecord implements IdentityInterface
                 $this->generateAuthKey();
             }
 
-            $this->username = mb_strtolower($this->username);
-
             if(!is_null($this->password)){
                 $this->setPassword($this->password);
-            }
-
-            
-            
+            }        
 
             return parent::beforeSave($insert);
         } else {
