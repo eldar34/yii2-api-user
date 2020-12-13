@@ -69,7 +69,7 @@ class UserController extends ActiveController
  *      ),
  * @OA\Response(response=201, description="Successful operation")
  * )
-  */
+*/
 
     public function actionCreate()
     {        

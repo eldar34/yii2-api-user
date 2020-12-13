@@ -1,24 +1,43 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My Second API",
+        "title": "Yii2-user-api",
         "version": "0.1"
     },
     "paths": {
-        "/api/resource.json": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "An example resource"
+        "/web/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "app\\modules\\api\\controllers\\AuthController::actionLogin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
                     }
-                }
-            }
-        },
-        "/v1/test.json": {
-            "get": {
+                },
                 "responses": {
                     "200": {
-                        "description": "An second resource"
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 }
             }
@@ -158,10 +177,49 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "404": {
+                        "description": "User not found"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Find user by ID",
+                "description": "Returns a single user",
+                "operationId": "view",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         }
     }

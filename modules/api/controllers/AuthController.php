@@ -25,6 +25,23 @@ class AuthController extends Controller
      * Renders the index view for the module
      * @return string
      */
+
+/**
+ * @OA\POST(path="/web/v1/auth/login", tags={"Auth"},
+ *      @OA\RequestBody(
+ *          @OA\MediaType(
+ *              mediaType="application/json",
+ *              @OA\Schema(
+ *                  required={"username", "password"},
+ *                  @OA\Property(property="username", type="string"),
+ *                  @OA\Property(property="password", type="string")
+ *              )
+ *          )
+ *      ),
+ * @OA\Response(response=200, description="Successful operation"),
+ * @OA\Response(response=403, description="Forbidden")
+ * )
+*/
     public function actionLogin()
     {
         $model = new LoginForm();
@@ -34,6 +51,7 @@ class AuthController extends Controller
         if ($token = $model->auth()) {
             return $token;
         } else {
+            Yii::$app->response->statusCode = 403;
             return $model->getErrors();
         }
     }
