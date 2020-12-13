@@ -66,7 +66,7 @@ class UserController extends ActiveController
     }
 
 /**
- * @OA\Get(path="/web/v1/user", tags={"User"},
+ * @OA\Get(path="/v1/user", tags={"User"},
  * @OA\Response(response="200", description="List user"),        
  * @OA\Response(response="405", description="Method Not Allowed"),        
  * @OA\Response(response="404", description="Not Found")        
@@ -82,7 +82,7 @@ class UserController extends ActiveController
     }
 
 /**
- * @OA\POST(path="/web/v1/user", tags={"User"},
+ * @OA\POST(path="/v1/user", tags={"User"},
  *      @OA\RequestBody(
  *          @OA\MediaType(
  *              mediaType="application/json",
@@ -117,7 +117,7 @@ class UserController extends ActiveController
 
 /**
 * @OA\Get(
-*     path="/web/v1/user/{id}",
+*     path="/v1/user/{id}",
 *     summary="Get user by ID",
 *     description="Returns a single user",
 *     operationId="view",
@@ -162,7 +162,7 @@ class UserController extends ActiveController
     }
 
 /**
- * @OA\PUT(path="/web/v1/user/{id}", tags={"User"},
+ * @OA\PUT(path="/v1/user/{id}", tags={"User"},
  *      @OA\RequestBody(
  *          @OA\MediaType(
  *              mediaType="application/json",
@@ -208,7 +208,7 @@ class UserController extends ActiveController
     }
 /**
 * @OA\DELETE(
-*     path="/web/v1/user/{id}",
+*     path="/v1/user/{id}",
 *     summary="Delete user by ID",
 *     description="Delete user",
 *     operationId="view",

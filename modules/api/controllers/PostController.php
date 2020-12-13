@@ -17,7 +17,7 @@ class PostController extends ActiveController
 /**
  * 
  * @OA\Get(
- *      path="/web/v1/posts",
+ *      path="/v1/posts",
  *      tags={"Post"},
  *      description="Get list of posts",
  *      security={{"bearerAuth":{}}}, 
@@ -28,7 +28,7 @@ class PostController extends ActiveController
  * )
  * 
  * @OA\Get(
- *     path="/web/v1/posts/{id}",
+ *     path="/v1/posts/{id}",
  *     summary="Get post by ID",
  *     description="Returns a single post",
  *     operationId="view",
@@ -50,7 +50,7 @@ class PostController extends ActiveController
  *       @OA\Response(response=404, description="Not Found"),
  * )
  * 
- * @OA\PUT(path="/web/v1/posts/{id}", tags={"Post"},
+ * @OA\PUT(path="/v1/posts/{id}", tags={"Post"},
  *      @OA\RequestBody(
  *          @OA\MediaType(
  *              mediaType="application/json",
@@ -81,7 +81,7 @@ class PostController extends ActiveController
  * )
  * 
  ** @OA\DELETE(
- *     path="/web/v1/posts/{id}",
+ *     path="/v1/posts/{id}",
  *     summary="Delete post by ID",
  *     description="Delete post",
  *     operationId="view",

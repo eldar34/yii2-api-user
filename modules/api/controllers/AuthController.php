@@ -27,7 +27,7 @@ class AuthController extends Controller
      */
 
 /**
- * @OA\POST(path="/web/v1/auth/login", tags={"Auth"},
+ * @OA\POST(path="/v1/auth/login", tags={"Auth"},
  *      @OA\RequestBody(
  *          @OA\MediaType(
  *              mediaType="application/json",
