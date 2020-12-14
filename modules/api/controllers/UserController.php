@@ -94,7 +94,8 @@ class UserController extends ActiveController
  *              )
  *          )
  *      ),
- * @OA\Response(response=201, description="Successful operation")
+ * @OA\Response(response=201, description="Successful operation"),
+ * @OA\Response(response=422, description="Unprocessable Entity")
  * )
 */
 

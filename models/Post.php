@@ -13,6 +13,9 @@ use Yii;
  */
 class Post extends \yii\db\ActiveRecord
 {
+
+    const SCENARIO_POST_CREATE = 'post_create';
+
     /**
      * {@inheritdoc}
      */
@@ -27,8 +30,9 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'string'],
+            [['title', 'content'], 'required', 'on' => 'post_create'],
             [['title'], 'string', 'max' => 255],
+            [['content'], 'string'],
         ];
     }
 
