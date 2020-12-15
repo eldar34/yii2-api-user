@@ -93,6 +93,9 @@
                 "responses": {
                     "201": {
                         "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -109,7 +112,7 @@
                 ],
                 "summary": "Get post by ID",
                 "description": "Returns a single post",
-                "operationId": "view",
+                "operationId": "viewPostById",
                 "parameters": [
                     {
                         "name": "id",
@@ -200,7 +203,7 @@
                 ],
                 "summary": "Delete post by ID",
                 "description": "Delete post",
-                "operationId": "view",
+                "operationId": "deletePostById",
                 "parameters": [
                     {
                         "name": "id",
@@ -282,6 +285,9 @@
                 "responses": {
                     "201": {
                         "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 }
             }
@@ -293,7 +299,7 @@
                 ],
                 "summary": "Get user by ID",
                 "description": "Returns a single user",
-                "operationId": "view",
+                "operationId": "viewUserById",
                 "parameters": [
                     {
                         "name": "id",
@@ -379,7 +385,7 @@
                 ],
                 "summary": "Delete user by ID",
                 "description": "Delete user",
-                "operationId": "view",
+                "operationId": "deleteUserById",
                 "parameters": [
                     {
                         "name": "id",
@@ -407,8 +413,6 @@
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
-                "name": "Authorization",
-                "in": "header",
                 "bearerFormat": "JWT",
                 "scheme": "bearer"
             }

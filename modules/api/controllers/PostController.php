@@ -32,7 +32,7 @@ class PostController extends ActiveController
  *     path="/v1/posts/{id}",
  *     summary="Get post by ID",
  *     description="Returns a single post",
- *     operationId="view",
+ *     operationId="viewPostById",
  *     tags={"Post"},
  *     @OA\Parameter(
  *         description="ID of post to return",
@@ -102,7 +102,7 @@ class PostController extends ActiveController
  *     path="/v1/posts/{id}",
  *     summary="Delete post by ID",
  *     description="Delete post",
- *     operationId="view",
+ *     operationId="deletePostById",
  *     tags={"Post"},
  *     @OA\Parameter(
  *         description="ID of post to delete",

@@ -20,8 +20,6 @@ use yii\filters\VerbFilter;
  *  @OA\Schemes(format="http")
  * @OA\SecurityScheme(
  *      securityScheme="bearerAuth",
- *      in="header",
- *      name="Authorization",
  *      type="http",
  *      scheme="bearer",
  *      bearerFormat="JWT",
@@ -121,7 +119,7 @@ class UserController extends ActiveController
 *     path="/v1/user/{id}",
 *     summary="Get user by ID",
 *     description="Returns a single user",
-*     operationId="view",
+*     operationId="viewUserById",
 *     tags={"User"},
 *     @OA\Parameter(
 *         description="ID of user to return",
@@ -212,7 +210,7 @@ class UserController extends ActiveController
 *     path="/v1/user/{id}",
 *     summary="Delete user by ID",
 *     description="Delete user",
-*     operationId="view",
+*     operationId="deleteUserById",
 *     tags={"User"},
 *     @OA\Parameter(
 *         description="ID of user to delete",

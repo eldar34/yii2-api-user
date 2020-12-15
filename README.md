@@ -79,6 +79,16 @@ You can then install this project template using the following command:
 composer install
 ~~~
 
+### File permissions
+
+If composer don't run script postCreateProject:
+
+~~~
+chmod 0777 runtime
+chmod 0777 web/assets
+chmod 0755 yii
+~~~
+
 ### Prepare settings for DB connection 
 
 Create file .env in project base directory. Copy the .env.example file to a local .env
@@ -110,5 +120,5 @@ php yii fixture/generate-all --count=10 --interactive=0
 If you want to update swagger documentation run command:
 
 ~~~
-vendor/bin/openapi modules/api/controllers -o web/documentation/swagger.json
+./vendor/bin/openapi modules/api/controllers -o web/documentation/swagger.json
 ~~~
