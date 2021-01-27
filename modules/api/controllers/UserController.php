@@ -49,6 +49,8 @@ class UserController extends ActiveController
         $behaviors = parent::behaviors();
 
         $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
+        $behaviors['corsFilter']['class']= \yii\filters\Cors::className();
+        // $behaviors['corsFilter']['сors']['Origin'] = ['http://www.github.com', 'https://www.github.com'];
 
         return $behaviors;
     }
