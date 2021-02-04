@@ -26,7 +26,7 @@ $this->title = 'Тестовое задание';
                     Ссылка на <a href="https://back.test2task.ru/documentation/" target="_blank">Swagger</a> <b>REST API</b> приложения.
                     <br>
                     
-                    Используя endpoints описанных в <a href="https://back.test2task.ru/documentation/" target="_blank">Swagger</a>:
+                    Используя endpoints описанные в <a href="https://back.test2task.ru/documentation/" target="_blank">Swagger</a>:
                     <ul>
                         <li>https://back.test2task.ru/v1/auth/login</li>
                         <li>https://back.test2task.ru/v1/users</li>
