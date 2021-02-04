@@ -29,7 +29,7 @@ $this->title = 'Тестовое задание';
                     Используя endpoints описанные в <a href="https://back.test2task.ru/documentation/" target="_blank">Swagger</a>:
                     <ul>
                         <li>https://back.test2task.ru/v1/auth/login</li>
-                        <li>https://back.test2task.ru/v1/users</li>
+                        <li>https://back.test2task.ru/v1/user</li>
                         <li>https://back.test2task.ru/v1/posts</li>
                         <li>И т.д. ...</li>
                     </ul>
