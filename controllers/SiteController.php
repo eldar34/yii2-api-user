@@ -21,10 +21,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['index', 'login', 'contact', 'about', 'logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['index', 'login', 'contact', 'about', 'logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -125,5 +125,15 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays task page.
+     *
+     * @return string
+     */
+    public function actionTask()
+    {
+        return $this->render('task');
     }
 }
