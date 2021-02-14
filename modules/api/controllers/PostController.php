@@ -127,10 +127,12 @@ class PostController extends ActiveController
     {
         $behaviors = parent::behaviors();
 
+        unset($behaviors['authenticator']);
+        $behaviors['corsFilter']['class']= \yii\filters\Cors::className();
+
         $behaviors['authenticator']['class'] = HttpBearerAuth::className();
         $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
         
-        $behaviors['corsFilter']['class']= \yii\filters\Cors::className();
         // $behaviors['corsFilter']['сors']['Origin'] = ['http://www.github.com', 'https://www.github.com'];
 
         return $behaviors;

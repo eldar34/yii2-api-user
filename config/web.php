@@ -78,8 +78,24 @@ $config = [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['v1/post']
-                ]
+                    'controller' => ['v1/post'],
+                    // 'pluralize' => false,	
+                    // 'except' => ['index', 'view', 'options', 'delete', 'create', 'update'],
+                    // 'patterns' => [
+                        
+                    // ],
+                    
+                    
+                ],
+                'PUT,PATCH v1/post/<id>' => 'v1/post/update',
+                'DELETE v1/post/<id>' => 'v1/post/delete',        
+                // 'POST v1/post' => 'v1/post/create',
+                'GET,HEAD v1/post/<id>' => 'v1/post/view',
+                'GET,HEAD v1/post/' => 'v1/post/index',
+                'v1/post/<id>' => 'v1/post/options',
+                'v1/post' => 'v1/post/options',
+                
+                
             ],
         ],
        
